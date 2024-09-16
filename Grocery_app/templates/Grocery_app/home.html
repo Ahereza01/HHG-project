@@ -1,0 +1,152 @@
+{% extends 'Grocery_app/base.html' %}
+{% block content %}
+<br></br>
+<style>
+  .search-container{
+    border:2px solid white;
+    border-radius:15px;
+    width:900px;
+    height: 60px;
+   }
+   .search-container {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 20px;
+   }
+   
+   .search-container form {
+     flex-grow: 1;
+   }
+   
+   .search-container input[type="submit"] {
+     margin-left: 10px;
+   }
+   /* Style for the responsive table container */
+.table-responsive {
+  max-height: 400px; /* Adjust as needed */
+  overflow-y: auto;  /* Vertical scrolling */
+  overflow-x: auto;  /* Horizontal scrolling if needed */
+  border: 1px solid #dee2e6; /* Border around the table container */
+  border-radius: 0.25rem; /* Rounded corners */
+  margin-top: 20px; /* Space above the table */
+}
+
+/* General table styles */
+.table {
+  width: 100%; /* Full width */
+  border-collapse: collapse; /* Collapsed borders */
+  background-color: burlywood; /* White background for the table */
+}
+
+/* Table header styles */
+.table thead {
+  background-color: #343a40; /* Dark background for header */
+  color: #fff; /* White text color */
+}
+
+/* Header and cell borders */
+.table th, .table td {
+  border: 1px solid #dee2e6; /* Light gray border */
+  padding: 0.75rem; /* Padding inside cells */
+  text-align: left; /* Left-aligned text */
+}
+
+/* Row hover effect */
+.table tbody tr:hover {
+  background-color: #f1f1f1; /* Light gray background on hover */
+}
+
+/* Header cell hover effect (optional) */
+.table thead th:hover {
+  background-color: #495057; /* Slightly lighter dark background */
+  color: #e9ecef; /* Slightly lighter text color */
+}
+
+/* Alternate row background colors */
+.table tbody tr:nth-of-type(even) {
+  background-color: burlywood; /* Light gray background for even rows */
+}
+
+/* Make sure the table layout adjusts automatically */
+.table {
+  table-layout: auto; /* Adjusts columns width automatically */
+}
+
+/* Additional styling for better visuals */
+.table th, .table td {
+  font-size: 1rem; /* Adjust font size as needed */
+  vertical-align: middle; /* Center align text vertically */
+}
+
+</style>
+
+<div style="margin: 0 auto; padding: 20px;">
+  <button type="submit" class="btn btn-secondary" style="width: 100px; height: 50px; "><a href="/login" style="text-decoration:none; color:white; font-weight:bolder;">Back</a></button>
+  </div>
+<div class = "container">
+  <h1 class= "text-center">ITEMS IN STOCK</h1>
+  <br>
+
+  <div class = "container">
+    <div class="search-container">
+      <form method="GET" class="row g-3" style="font-weight:bolder;">
+        <div class="col-md-10">
+          {{ product_filters.form }}
+        </div>
+        <div class="col-md-2">
+          <input type="submit" value="Search" style="width:100px; font-weight:bolder;" class="btn btn-secondary btn-block" />
+        </div>
+      </form>
+</div>
+  </div>
+
+  <br>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Item Name</th>
+        <th scope="col">Branch Name</th>
+        <th scope="col">Unit Price(UGX)</th>
+        <th scope="col">Unit Cost(UGX)</th>
+        <th scope = "col">Total Quantity</th>
+        <th scope="col">Sell Item</th>
+        <th scope="col">Remove Item</th>
+      </tr>
+    </thead>
+    {% for product in products %}
+    <tbody>
+      <tr>    
+        <td>{{product.item_name}}</td>
+        <td>{{product.branch_name}}</td>
+        <td>{{product.unit_price}}</td>
+        <td>{{product.unit_cost}}</td>
+        <td>{{product.total_quantity}}</td>
+        <td><a href="{% url 'product_detail' product.id%}"
+              ><input
+                type="submit"
+                value="Sell Item"
+                class="btn btn-secondary btn"
+                type="button"
+            /></a></td>
+
+
+<td><a href="{% url 'delete_detail' product.id %}"
+              ><input
+                type="submit"
+                value="Delete Item"
+                class="btn btn-danger btn"
+                type="button"
+            /></a></td>
+
+
+
+
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+<br><br>
+{% endblock%}
+<br><br><br>

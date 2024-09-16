@@ -1,0 +1,223 @@
+{% block content%}
+{% load static %}
+
+
+
+<style>
+  body {
+    background-image: url("{% static 'images/hhg1.jpeg' %}");
+    background-size: cover;
+  }
+  .container {
+    /* Optional: Apply different background to container */
+    background-color: rgba(255, 255, 255, 0.347); /* Add white background with transparency */
+    padding: 5px;
+  }
+   .first{
+    background: black;
+    color: white;
+    padding: 20px 25px 20px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    text-decoration: none;
+    width: 100px;
+    height: 50px ;
+  } 
+   
+   
+  
+  
+  .first a{
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+    font-size: medium;
+    
+  }
+  .table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+
+}
+
+
+main.table {
+    width: 1100px;
+    height: 90vh;
+    background: #fff5;
+    backdrop-filter: blur(7px);
+    box-shadow: 0.4rem 0.8rem #0005;
+    border-radius: 0.8rem;
+    overflow-y: hidden;
+    overflow-y: auto;
+}
+
+.table_header {
+    width: 100%;
+    height: 10%;
+    background-color: #fff4;
+    padding: 0.8rem 1rem;
+}
+
+.table_body {
+    width: 95%;
+    max-height: 85%;
+    background-color: #fffb;
+    margin: 0.8rem auto;
+    border-radius: 0.6rem;
+}
+
+.table_body::-webkit-scrollbar {
+    width: 0.5rem;
+    height: auto;
+}
+
+.table_body::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem;
+    background-color: #0004;
+    visibility: visible;
+}
+
+.table_body:hover::-webkit-scrollbar-thumb:hover {
+    visibility: visible;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+
+    
+}
+
+th, td {
+    padding: 1rem;
+    border-collapse: collapse;
+    text-align: center;
+    border: 3px solid #0000000b;
+
+
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #d5d1defe;
+}
+
+tbody {
+    background-color: #0000000;
+
+
+}
+h1 {
+  text-align: center;
+  font-style: italic;
+}
+footer {
+ text-align: center;
+ color: black;
+ background: rgb(190, 130, 130);
+ position:fixed;
+ heigt:50px;
+ width:100%;
+ font-weight:bolder;
+ bottom:0;
+}
+
+</style>
+<br></br>
+<div class="container" style="display: flex; align-items: center; justify-content: space-between; padding: 20px; font-family: Arial, sans-serif;">
+
+  <!-- Logo Section -->
+  <header style="flex: 1;">
+    <img src="{% static 'images/logo.png' %}" width="200px" height="auto" alt="" class="logo">
+  </header>
+
+  <!-- Title for Items in Stock -->
+  <h1 class="text-center" style="flex: 2; text-align: center; font-size: 2rem; font-weight: bold; color: #333; margin-right: 200px;">ITEMS IN STOCK</h1>
+
+  <!-- Login Button -->
+  <button type="submit" class="first" style="background-color: black; color: white; padding: 10px 20px; font-size: 18px; font-weight:bold; border-radius: 5px; cursor: pointer; width: 100px; text-align: center;">
+    <a href="/login" style="text-decoration: none; color: white;">Login</a>
+  </button>
+
+</div>
+{% comment %} <div class="container" style="display: flex; align-items: center; justify-content: space-between; padding: 20px; font-family: Arial, sans-serif;">
+
+  
+  <header style="flex: 1;">
+    <img src="{% static 'images/logo.png' %}" width="200px" height="auto" alt="" class="logo">
+  </header>
+
+  
+  <h1 class="text-center" style="flex: 2; text-align: center; font-size: 2rem; font-weight: bold; color: #333; margin-right: 200px;">ITEMS IN STOCK</h1>
+
+  
+  <button type="submit" class="first" style="background-color: black; color: white; padding: 5px 10px; font-size: 14px; border-radius: 5px; cursor: pointer; width: 60px; text-align: center;">
+    <a href="/login" style="text-decoration: none; color: white;" >Login</a>
+  </button>
+
+</div> {% endcomment %}
+
+
+
+{% comment %} <div class = "container">
+<button type="submit" class="first">
+  <a href="/login">Login</a>
+</button>
+
+
+  <header style="position:flex; top: 0; left: 0;">
+    <img src="{% static 'images/logo.png' %}" width = "200px" height = "auto" alt="" class="logo">
+  </header>
+  
+  <br>
+
+  
+    <h1 class= "text-center">ITEMS IN STOCK</h1>
+  </div> {% endcomment %}
+
+  <br>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Item Name</th>
+        <th scope = "col">Total Quantity</th>
+
+      </tr>
+    </thead>
+    {% for product in products %}
+    <tbody>
+      <tr>    
+        <td>{{product.item_name}}</td>
+        
+        <td>{{product.total_quantity}}</td>
+
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+  {% endblock%}
+  <footer>
+    <p>&copy; 2024 @ HHG Co.Ltd designed by Vivian. All rights reserved</p>
+  </footer>
+
+
+
+       
+        
+        
+        
+     
+       
+
+
+
+
+      

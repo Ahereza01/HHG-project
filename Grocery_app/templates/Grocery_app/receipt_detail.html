@@ -1,0 +1,87 @@
+{% extends 'Grocery_app/base.html'%} {% block content%}
+<br />
+<style>
+  .print {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .print a {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bolder;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .print a i {
+    margin-right: 5px;
+    font-size: 14px; 
+  }
+  .first{
+    font-weight: bolder;
+    text-align: center;
+  }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="text-center">RECEIPT</h1><br>
+          <div class="first">
+            <h5>Happy Hoe Grocery</h5>
+      <h5>Tel:075258966, 077653259</h5>
+      <h5>Address: 123 Maganjo-Kampala</h5>
+      <h5>www.HHG.ltd</h5>
+      <h6>Date: {{ receipt.date }} </h6>
+
+          </div>
+          
+          <h2 class="lead">Customer Name: {{receipt.issued_to | title}}</h2>
+        </div>
+        <div class="card-block">
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <td><strong>Item Name</strong></td>
+                  <td class="text-xs-center"><strong>Item Quantity</strong></td>
+                  <td class="text-xs-right"><strong>Total Bill(Ugx)</strong></td>
+                  <td class="text-xs-right"><strong>Amount Paid(Ugx)</strong></td>
+                  <td class="text-xs-right">
+                    <strong>Total change(UgX)</strong>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{receipt.item| title}}</td>
+                  <td class="text-xs-center">{{receipt.quantity }}</td>
+                  <td class="text-xs-center">Ug{{receipt.get_total | title}}</td>
+                  <td class="text-xs-right">Ugx{{ receipt.amount_received }}</td>
+                  <td class="text-xs-right">Ugx{{ receipt.get_change }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="print">
+              <button id="print-button" class="btn btn-primary" style="background: black;" onclick="printReceipt()">Print Receipt</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function printReceipt() {
+    window.print();
+  }
+</script>
+
+{% endblock %}

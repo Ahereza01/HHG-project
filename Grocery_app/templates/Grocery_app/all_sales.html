@@ -1,0 +1,122 @@
+{% extends 'Grocery_app/base.html'%} 
+{% block content %}
+<br></br>
+<style>
+  /* Style for the responsive table container */
+.table-responsive {
+  max-height: 400px; /* Adjust as needed */
+  overflow-y: auto;  /* Vertical scrolling */
+  overflow-x: auto;  /* Horizontal scrolling if needed */
+  border: 1px solid #dee2e6; /* Border around the table container */
+  border-radius: 0.25rem; /* Rounded corners */
+  margin-top: 20px; /* Space above the table */
+}
+
+/* General table styles */
+.table {
+  width: 100%; /* Full width */
+  border-collapse: collapse; /* Collapsed borders */
+  background-color: burlywood; /* White background for the table */
+}
+
+/* Table header styles */
+.table thead {
+  background-color: #343a40; /* Dark background for header */
+  color: #fff; /* White text color */
+}
+
+/* Header and cell borders */
+.table th, .table td {
+  border: 1px solid #dee2e6; /* Light gray border */
+  padding: 0.75rem; /* Padding inside cells */
+  text-align: left; /* Left-aligned text */
+}
+
+/* Row hover effect */
+.table tbody tr:hover {
+  background-color: #f1f1f1; /* Light gray background on hover */
+}
+
+/* Header cell hover effect (optional) */
+.table thead th:hover {
+  background-color: #495057; /* Slightly lighter dark background */
+  color: #e9ecef; /* Slightly lighter text color */
+}
+
+/* Alternate row background colors */
+.table tbody tr:nth-of-type(even) {
+  background-color: burlywood; /* Light gray background for even rows */
+}
+
+/* Make sure the table layout adjusts automatically */
+.table {
+  table-layout: auto; /* Adjusts columns width automatically */
+}
+
+/* Additional styling for better visuals */
+.table th, .table td {
+  font-size: 1rem; /* Adjust font size as needed */
+  vertical-align: middle; /* Center align text vertically */
+}
+
+</style>
+<div style="margin: 0 auto; padding: 20px;">
+  <button type="submit" class="btn btn-secondary" style="width: 100px; height: 50px; "><a href="/home" style="text-decoration:none; color:white; font-weight:bolder;">Back</a></button>
+  </div>
+<div class = "container">
+  <h1 class = "text-center">TOTAL SALES MADE</h1><br>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Total Amount Expected</th>
+          <th scope="col">Total Amount Received</th>
+          <th scope="col">Total Debt Issued</th>
+          <th scope="col">Net Amount</th>
+        </tr>
+      </thead>  
+      <tbody>
+        <tr>
+          <td>UGX{{total_expected}}</td>    
+          <td>UGX{{total}}</td>
+          <td>UGX{{total_change}}</td>
+          <td>UGX{{net}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br></br>
+
+<div class="container">
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Item Bought</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Unit Price (UGX)</th>
+          <th scope="col">Total Cost</th>
+          <th scope="col">Amount Paid</th>
+          <th scope="col">Change Collected</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sale in sales %}
+        <tr>    
+          <td>{{sale.issued_to | title}}</td>
+          <td>{{sale.item | title}}</td>
+          <td>{{sale.quantity}}</td>
+          <td>UGX{{sale.unit_price}}</td>
+          <td>UGX{{sale.get_total}}</td>
+          <td>UGX{{sale.amount_received}}</td>
+          <td>UGX{{sale.get_change}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<br><br><br>
+{% endblock %}
+<br>
+<br>

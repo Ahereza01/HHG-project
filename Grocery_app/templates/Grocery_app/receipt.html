@@ -1,0 +1,46 @@
+{% extends 'Grocery_app/base.html'%} {% block content%}
+<br /><br>
+<div style="margin: 0 auto; padding: 20px;">
+  <button type="submit" class="btn btn-secondary" style="width: 100px; height: 50px; "><a href="/home" style="text-decoration:none; color:white; font-weight:bolder;">Back</a></button>
+  </div>
+<div class="container">
+  <h1 class="card-header text-center">ALL RECEIPTS</h1><br>
+  <div class="row">
+    
+      {% for sale in sales %}
+<div class="col-6 mb-4">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">Customer : {{sale.issued_to | title}}</h3>
+      <h6 class="card-text">Item : {{sale.item}}</h6>
+      <h6 class="card-text">Amount Paid:  UGX{{ sale.amount_received }}</h6>
+      <h6 class="card-text">Quantity: {{sale.quantity }}</h6>
+      <h2>Total Price :  UGX{{ sale.get_total }}</h2>
+      <div style="flex: 1">
+        <h6 class="card-text">Change Collected:  UGX{{ sale.get_change }}</h6>
+        <a href="{% url 'receipt_detail' sale.id %}">
+        <!-- <a href="#"> -->
+          <!-- <input
+            type="submit"
+            value="Final Receipt"
+            class="btn btn-danger"
+            type="button"
+          /> -->
+
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+  Final Receipt
+</button>
+
+
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+  {% endfor %}
+    </div>
+  
+</div>
+ 
+
+{% endblock %}
