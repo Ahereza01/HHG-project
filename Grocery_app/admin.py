@@ -4,3 +4,4 @@ from.models import *
 
 # Register your models here.
 admin.site.register(Stockx) # Registering the stockx model to the admin dashboard.
+admin.site.register(Sale) 

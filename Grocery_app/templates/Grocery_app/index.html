@@ -54,6 +54,7 @@ main.table {
     border-radius: 0.8rem;
     overflow-y: hidden;
     overflow-y: auto;
+    border-radius: 10px;
 }
 
 .table_header {
@@ -87,8 +88,12 @@ main.table {
 }
 
 table{
-    width: 100%;
+    width: 50%;
     border-collapse: collapse;
+    margin:0 auto;
+    padding:20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
 
     
 }
@@ -98,6 +103,11 @@ th, td {
     border-collapse: collapse;
     text-align: center;
     border: 3px solid #0000000b;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: white;
+    border: 2px solid whitesmoke;
+    
 
 
 }
@@ -107,6 +117,7 @@ thead th {
     top: 0;
     left: 0;
     background-color: #d5d1defe;
+    color: black;
 }
 
 tbody {
@@ -187,7 +198,7 @@ footer {
     <thead class="thead-dark">
       <tr>
         <th scope="col">Item Name</th>
-        <th scope = "col">Total Quantity</th>
+        <th scope = "col">Total Quantity(Kgs)</th>
 
       </tr>
     </thead>
@@ -203,6 +214,7 @@ footer {
     {% endfor %}
   </table>
 </div>
+<br><br><br>
   {% endblock%}
   <footer>
     <p>&copy; 2024 @ HHG Co.Ltd designed by Vivian. All rights reserved</p>
